@@ -3,9 +3,9 @@ const app = express();
 app.use(express.static('public'));
 
 
-app.listen(3000, ()=>{
-    console.log('Servidor funcionando');
-});
+const port =process.env.PORT || 3001;
+
+app.listen (port, ()=> console.log('Servidor corriendo en el puerto ${port}'));
 
 app.get('/', (req,res)=>{
     res.sendFile(__dirname + '/views/home.html');
