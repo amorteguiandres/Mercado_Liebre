@@ -1,20 +1,25 @@
 const express = require('express');
 const app = express();
-app.use(express.static('public'));
+const PORT = process.env.PORT||3001;
+const path = require('path');
 
 
-const port =process.env.PORT || 3001;
 
-app.listen (port, ()=> console.log('Servidor corriendo en el puerto ${port}'));
-
-app.get('/', (req,res)=>{
-    res.sendFile(__dirname + '/views/home.html');
+app.get('/', (req, res) => {
+    let htmlPath = path.resolve(__dirname, '../views/home.html');
+    res.sendFile(htmlPath);
 });
 
-app.get('/login', (req,res)=>{
-    res.sendFile(__dirname + '/views/login.html');
+app.get('/register', (req, res) => {
+    let htmlPath = path.resolve(__dirname, '../views/register.html');
+    res.sendFile(htmlPath);
 });
 
-app.get('/register', (req,res)=>{
-    res.sendFile(__dirname + '/views/register.html');
+app.get('/login', (req, res) => {
+    let htmlPath = path.resolve(__dirname, '../views/login.html');
+    res.sendFile(htmlPath);
 });
+
+app.use(express.static(path.resolve(__dirname, '../public')));
+
+app.listen(PORT, () => console.log('Escuchando en http://localhost:'+PORT));
