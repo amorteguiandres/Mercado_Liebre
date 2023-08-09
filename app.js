@@ -7,8 +7,7 @@ const path = require('path');
 app.use(express.static(path.resolve(__dirname, './public')));
 
 app.get('/', (req, res) => {
-    let htmlPath = path.resolve(__dirname, './views/home.html');
-    res.sendFile(htmlPath);
+    res.sendFile(path.join(__dirname, 'views', 'home.html'));
 });
 
 app.get('/register', (req, res) => {
